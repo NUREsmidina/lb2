@@ -1,41 +1,81 @@
 <!doctype html>
-<html class="no-js" lang="">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
-  <meta name="theme-color" content="#fafafa">
+  <title>lb2</title>
 </head>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+<div>
+  <button onclick="handleCleanClicked()">C</button>
+</div>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+<div>
+  <button onclick="handleMathButtonClicked('7')">7</button>
+  <button onclick="handleMathButtonClicked('8')">8</button>
+  <button onclick="handleMathButtonClicked('9')">9</button>
+  <button onclick="handleMathButtonClicked('/')">/</button>
+</div>
+
+<div>
+  <button onclick="handleMathButtonClicked('4')">4</button>
+  <button onclick="handleMathButtonClicked('5')">5</button>
+  <button onclick="handleMathButtonClicked('6')">6</button>
+  <button onclick="handleMathButtonClicked('*')">*</button>
+</div>
+
+<div>
+  <button onclick="handleMathButtonClicked('1')">1</button>
+  <button onclick="handleMathButtonClicked('2')">2</button>
+  <button onclick="handleMathButtonClicked('3')">3</button>
+  <button onclick="handleMathButtonClicked('-')">-</button>
+</div>
+
+<div>
+  <button onclick="handleMathButtonClicked('.')">.</button>
+  <button onclick="handleMathButtonClicked('0')">0</button>
+  <button onclick="handleResultClicked()">=</button>
+  <button onclick="handleMathButtonClicked('+')">+</button>
+</div>
+
+<div>
+  <p>Expression : </p>
+  <input type="text" id="expression" readonly/>
+</div>
+
+<div>
+  <p>Result : </p>
+  <input type="text" id="result" readonly/>
+</div>
+
+<script>
+  let expression = "";
+  let result = "";
+  const resultElement = document.getElementById("result");
+  const expressionElement = document.getElementById("expression");
+
+  function handleCleanClicked() {
+    expression = "";
+    result = "";
+    expressionElement.value = expression;
+    resultElement.value = result;
+  }
+
+  function handleMathButtonClicked(value) {
+    expression += value;
+    expressionElement.value = expression;
+  }
+
+  function handleResultClicked() {
+    try {
+      result = eval(expression);
+      resultElement.value = result;
+    } catch (exception) {
+      alert("Failed while calculation the expression " + exception.message);
+    }
+  }
+</script>
+
 </body>
 
 </html>
